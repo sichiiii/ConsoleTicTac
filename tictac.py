@@ -62,5 +62,6 @@ def pointer():
             turn = 'O'
         else:
             turn = 'X' 
-print("\nGame Over.\n")
+            
 pointer()
+print("\nGame Over.\n")
