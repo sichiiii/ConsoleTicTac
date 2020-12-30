@@ -13,6 +13,7 @@ def checkSpan(value):
         return True
     else:
         return False
+    
 def checkOX(value):
     if value == 'X' or value == 'O':
         return True
@@ -26,7 +27,7 @@ def printBoard(board):
     print('-----')
     print(board['1'] + '|' + board['2'] + '|' + board['3'])    
    
-def vvodDlyaDebilov():
+def dataInput():
     while True:
         print('Enter num: ')
         move = input()
@@ -34,7 +35,6 @@ def vvodDlyaDebilov():
         if ind == True:
             ind = checkOX(theBoard[move])
             if ind == False:
-                
                 return move
     
 def pointer():
@@ -42,7 +42,7 @@ def pointer():
     for i in range(10):
         printBoard(theBoard)
         print("It's your turn," + turn)
-        move = vvodDlyaDebilov()
+        move = dataInput()
         theBoard[move] = turn
         if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': 
             printBoard(theBoard)                            
