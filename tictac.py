@@ -10,7 +10,6 @@ blya = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 def checkSpan(value):
     if value in blya:
-        blya.remove(value)
         return True
     else:
         return False
@@ -26,33 +25,17 @@ def printBoard(board):
     print(board['4'] + '|' + board['5'] + '|' + board['6'])
     print('-----')
     print(board['1'] + '|' + board['2'] + '|' + board['3'])    
-
-def esheEbuchiyMetod(turn1, hod):
-    print('Ti real\'no eblan')
-    print('Enter num: ')
-    move = input()
-    ind = checkSpan(move)
-    if ind == True:
-        ind = checkOX(theBoard[move])
-        if ind == True:
-            esheEbuchiyMetod(turn, theBoard[move])
-        else: 
-            return move
-    else:
-        move = esheEbuchiyMetod(turn1, hod)
-        return move
    
 def vvodDlyaDebilov():
-    print('Enter num: ')
-    move = input()
-    ind = checkSpan(move)
-    if ind == True:
-        return move
-    else:
-        printBoard(theBoard)
-        print('Ti eblan')
-        move = vvodDlyaDebilov()
-        return move
+    while True:
+        print('Enter num: ')
+        move = input()
+        ind = checkSpan(move)
+        if ind == True:
+            ind = checkOX(theBoard[move])
+            if ind == False:
+                
+                return move
     
 def pointer():
     turn = 'X'
@@ -60,12 +43,7 @@ def pointer():
         printBoard(theBoard)
         print("It's your turn," + turn)
         move = vvodDlyaDebilov()
-        ind = checkOX(theBoard[move])
-        if ind == True:
-            var = esheEbuchiyMetod(turn, theBoard[move])
-            theBoard[var] = turn
-        else:
-            theBoard[move] = turn                   
+        theBoard[move] = turn
         if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': 
             printBoard(theBoard)                            
             break
