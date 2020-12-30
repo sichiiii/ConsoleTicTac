@@ -6,31 +6,47 @@ board_keys = []
 for key in theBoard:
     board_keys.append(key)
 
+blya = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+def checkSpan(value):
+    if value in blya:
+        blya.remove(value)
+        return True
+    else:
+        return False
+def checkOX(value):
+    if value == 'X' or value == 'O':
+        return True
+    else:
+        return False
+        
 def printBoard(board):
     print(board['7'] + '|' + board['8'] + '|' + board['9'])
     print('-----')
     print(board['4'] + '|' + board['5'] + '|' + board['6'])
     print('-----')
-    print(board['1'] + '|' + board['2'] + '|' + board['3'])
+    print(board['1'] + '|' + board['2'] + '|' + board['3'])    
 
 def esheEbuchiyMetod(turn1, hod):
     print('Ti real\'no eblan')
-    blya = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     print('Enter num: ')
     move = input()
-    turn = turn1
-    if move in blya: 
-        if theBoard[move] == 'X' or theBoard[move] == 'O':
+    ind = checkSpan(move)
+    if ind == True:
+        ind = checkOX(theBoard[move])
+        if ind == True:
             esheEbuchiyMetod(turn, theBoard[move])
         else: 
             return move
-        
+    else:
+        move = esheEbuchiyMetod(turn1, hod)
+        return move
+   
 def vvodDlyaDebilov():
-    blya = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     print('Enter num: ')
     move = input()
-    if move in blya:
-        blya.remove(move)
+    ind = checkSpan(move)
+    if ind == True:
         return move
     else:
         printBoard(theBoard)
@@ -44,7 +60,8 @@ def pointer():
         printBoard(theBoard)
         print("It's your turn," + turn)
         move = vvodDlyaDebilov()
-        if theBoard[move] == 'X' or theBoard[move] == 'O':
+        ind = checkOX(theBoard[move])
+        if ind == True:
             var = esheEbuchiyMetod(turn, theBoard[move])
             theBoard[var] = turn
         else:
