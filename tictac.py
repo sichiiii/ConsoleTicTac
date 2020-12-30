@@ -1,7 +1,6 @@
 theBoard = {'7': ' ' , '8': ' ' , '9': ' ' ,
             '4': ' ' , '5': ' ' , '6': ' ' ,
             '1': ' ' , '2': ' ' , '3': ' ' }
-
 board_keys = []
 
 for key in theBoard:
@@ -14,25 +13,42 @@ def printBoard(board):
     print('-----')
     print(board['1'] + '|' + board['2'] + '|' + board['3'])
 
+def esheEbuchiyMetod(turn1, hod):
+    print('Ti real\'no eblan')
+    blya = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    print('Enter num: ')
+    move = input()
+    turn = turn1
+    if move in blya: 
+        if theBoard[move] == 'X' or theBoard[move] == 'O':
+            esheEbuchiyMetod(turn, theBoard[move])
+        else: 
+            return move
+        
 def vvodDlyaDebilov():
     blya = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     print('Enter num: ')
     move = input()
     if move in blya:
+        blya.remove(move)
         return move
     else:
         printBoard(theBoard)
         print('Ti eblan')
         move = vvodDlyaDebilov()
         return move
+    
 def pointer():
     turn = 'X'
-    
     for i in range(10):
         printBoard(theBoard)
         print("It's your turn," + turn)
         move = vvodDlyaDebilov()
-        theBoard[move] = turn                   
+        if theBoard[move] == 'X' or theBoard[move] == 'O':
+            var = esheEbuchiyMetod(turn, theBoard[move])
+            theBoard[var] = turn
+        else:
+            theBoard[move] = turn                   
         if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': 
             printBoard(theBoard)                            
             break
@@ -62,6 +78,6 @@ def pointer():
             turn = 'O'
         else:
             turn = 'X' 
-            
+
 pointer()
-print("\nGame Over.\n")
+print('Game over.')
